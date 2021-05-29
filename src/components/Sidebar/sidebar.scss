@@ -1,8 +1,8 @@
 aside{
-  width: 360px;
+  width: auto;
   height: auto;
   
-  .container{
+  .sidebarContainer{
     background: var(--fundoCard);
     
     width: 100%;
@@ -11,7 +11,7 @@ aside{
     padding: 2.5rem 1rem;
     border-radius: 7px;
 
-  .products{
+  .sidebarProducts{
     display: flex;
     width: 100%;
     flex-direction: column;

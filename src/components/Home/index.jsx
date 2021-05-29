@@ -16,14 +16,52 @@ const Home = () => {
       </ul>
 
       <div className='homeContainer'>
-        <div className='searchContainer'>
-          <AiOutlineSearch className='searchIcon' size={26}color='var(--placeholder)'/>
-          <input type="text" name="search" id=""/>
-        </div>
-        <div className='wrapper-grid'>
-          <div></div>
-        </div>
+        <div className='productsContainer'>
+          <div className='searchContainer'>
+            <AiOutlineSearch className='searchIcon' size={26}color='var(--placeholder)'/>
+            <input type="text" name="search" id=""/>
+          </div>
 
+          <div className='businessList'>
+            <div className='business'>
+              <img src='/assets/bag.svg' alt=''/>
+              <div className='businessInfo'>
+                <p>RodaPizza</p>
+                <strong>Pizzarias</strong>
+                <span>Rua José Loureira da Silva, 1230</span>
+              </div>              
+            </div>
+
+            <div className='business'>
+              <img src='/assets/bag.svg' alt=''/>
+              <div className='businessInfo'>
+                <p>RodaPizza</p>
+                <strong>Pizzarias</strong>
+                <span>Rua José Loureira da Silva, 1230</span>
+              </div>              
+            </div>
+
+            <div className='business'>
+              <img src='/assets/bag.svg' alt=''/>
+              <div className='businessInfo'>
+                <p>RodaPizza</p>
+                <strong>Pizzarias</strong>
+                <span>Rua José Loureira da Silva, 1230</span>
+              </div>              
+            </div>
+
+            <div className='business'>
+              <img src='/assets/bag.svg' alt=''/>
+              <div className='businessInfo'>
+                <p>RodaPizza</p>
+                <strong>Pizzarias</strong>
+                <span>Rua José Loureira da Silva, 1230</span>
+              </div>              
+            </div>
+          </div>
+        </div>  
+        
+      
         <Sidebar/>
       </div>
     </section>

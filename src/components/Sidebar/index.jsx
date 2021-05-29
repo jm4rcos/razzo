@@ -5,10 +5,10 @@ import './sidebar.scss'
 const Sidebar = () => {
   return (
     <aside>
-      <div className="container">
-        <section className='products'>
-        <strong>Produto</strong>
-        <div className='bagItem'>
+      <div className="sidebarContainer">
+        <section className='sidebarProducts'>
+          <strong>Produto</strong>
+          <div className='bagItem'>
           <img src="/assets/user.png" alt="" className='productImg'/>
 
           <div className='info'>
