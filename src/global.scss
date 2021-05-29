@@ -1,0 +1,54 @@
+:root{
+  --fundo: ##F7F9FC;
+  --fundoCard: #F2F5FA;
+  --link: #249CF2;
+  --texto: #979797;
+  --placeholder: #D0C9D6;
+  --border: #E5E4E5;
+  --validar: #55B84B;
+  --preto: #282828;
+  --auxiliar: #8A8A8C;
+  --negar: #CC0A2E;
+  --campos: #73657E;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App{
+  background: #fff;
+  display: flex;
+  font-family: 'Gordita', sans-serif;
+}
+
+a{
+  color: var(--link);
+  font-weight: 500;
+  text-decoration: none;
+}
+p{
+  font-weight: 400;
+  color: var(--texto);
+}
+strong{
+  font-weight: 400;
+}
+img{
+  cursor: pointer;
+}
+button{
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 7px;
+}
+
+.App{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* font-family: 'ABeeZee', sans-serif; */
