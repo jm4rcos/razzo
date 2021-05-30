@@ -1,5 +1,7 @@
 import axios from 'axios'
-import { addBusinesses, addProducts } from '../Business'
+import { addBusinesses } from '../Business'
+import { addProducts } from '../Products'
+import { addCurrentId } from '../BusinessId'
 
 export const getBusiness = () => {
   return dispatch => {
@@ -12,13 +14,13 @@ export const getBusiness = () => {
   } 
 }
 
-export const getProducts = id => {
+export const getProducts = (id, index) => {
   return dispatch => {
     axios.get(`https://api-test-carrinho.herokuapp.com/product/business/${id}`)
       .then(res => {
         dispatch(addProducts(res.data.data))
-        console.log(res.data.data)
+        dispatch(addCurrentId(index))
       })
-      .catch(console.log(id))
+      .catch(console.log)
   }
 }

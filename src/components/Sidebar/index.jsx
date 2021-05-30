@@ -2,10 +2,13 @@ import React from 'react'
 
 import './sidebar.scss'
 
-const Sidebar = () => {
+const Sidebar = ({addItemCart}) => {
+
+
+
   return (
     <aside>
-      <div className="sidebarContainer">
+      <div className="sidebarContainer" addItemCart={addItemCart}>
         <section className='sidebarProducts'>
           <strong>Produto</strong>
           <div className='bagItem'>

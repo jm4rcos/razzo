@@ -1,39 +1,27 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useContext, useState, useEffect } from 'react'
-import { BusinessContext } from '../../context/BusinessContext'
+import React from 'react'
 import { FiChevronRight, FiPlus, FiChevronLeft } from 'react-icons/fi'
 import { AiOutlineSearch, AiOutlineMinus } from 'react-icons/ai'
 import { Link } from  'react-router-dom'
 
 import Sidebar from '../Sidebar'
 
-import { getProducts } from '../../store/fetchActions'
-import { useDispatch, useSelector } from 'react-redux'
-import { addProducts } from '../../store/Business'
+import { useSelector } from 'react-redux'
 
 import './business.scss'
 
-const Home = () => {
-  /* const [currentBusinessProducts, setCurrentBusinessProducts ] = useState([])
-  const { currentId } = useContext(BusinessContext)
+const BusinessScreen = ({ addItemCart }) => {
+  const currentId = useSelector(state => state.currentId)
+  const product = useSelector(state => state.products)
+  
+  const currentProduct = product.length - 1
+  const lastCurrentId = product.length - 1
 
-  console.log(currentBusinessProducts)
-  console.log(currentId) */
-
-  /* async function fetchBusiness(){
-    const { data } = await axios.get(`https://api-test-carrinho.herokuapp.com/product/business/${currentId}`)
-    setCurrentBusinessProducts(data.data)
+  // eslint-disable-next-line no-redeclare
+  function addItemCart(item){
+    console.log(item);
   }
-
-  useEffect(() => {
-    fetchBusiness()
-    
-  }, []) */
-
-  const products = useSelector(state => state.products)
-  const dispatch = useDispatch()
-
 
   return (
     <section>
@@ -49,6 +37,7 @@ const Home = () => {
     </ul>
 
     <div className='homeContainer'>
+
       <div className='productsContainer'>
         <div className='searchContainer'>
           <AiOutlineSearch className='searchIcon' size={26}color='var(--placeholder)'/>
@@ -57,25 +46,31 @@ const Home = () => {
 
         <div className='CurrentBusiness'>
 
-          <div className='imageDiv'>
-            <img src='/assets/bag.svg' alt=''/>
-          </div>
+          {currentId[lastCurrentId] && (<>
+            <div className='imageDiv'>
+              <img src={currentId[lastCurrentId].assets.logo} alt=''/>
+            </div>
 
-          <div className='businessInfo'>
-          <p>asdfadsfa</p>
-          <strong>dasfadf</strong>
-          <span>dfdsfds, adfdsf 3051</span>
-       </div>
+            <div className='businessInfo'>
+              <p>{currentId[lastCurrentId].name}</p>
+              <strong>{currentId[lastCurrentId].description}</strong>
 
-        </div>
+              <span>
+                {currentId[lastCurrentId].address.street_name}, 
+                {currentId[lastCurrentId].address.city} 
+                {currentId[lastCurrentId].address.street_number}
+              </span>
+            </div>
+            </>)}
+      </div>
 
         <div className='businessListCurrent'>
 
-          {/* {currentBusinessProducts.map(product => {
+          {product[0] ? product[currentProduct].map(product => {
             return (
               <div className='business' key={product._id}>
                 <div className='imageDiv'>
-                  <img src={product.imgs[0].url} alt=''/>
+                  <img src={product.imgs[1].url} alt=''/>
                 </div>
 
                 <div className='businessInfo'>
@@ -88,7 +83,7 @@ const Home = () => {
                     <button>
                       <AiOutlineMinus size={18}/>
                     </button>
-                    <button>1</button>
+                    <button onClick={() => addItemCart(product)}>1</button>
                     <button>
                       <FiPlus size={18}/>
                     </button>
@@ -96,34 +91,7 @@ const Home = () => {
                 </div>
               </div>
             )
-          })} */}
-
-              {/* <div 
-              className='business' 
-              to={`/`}>
-
-                <div className='imageDiv'>
-                  <img src='/assets/bag.svg' alt=''/>
-                </div>
-
-                <div className='businessInfo'>
-                  <p>Pizza picanha com cheddar</p>
-                  <span>Picanha + Cheddar + Borda de Catupiry</span>
-                  <span>Tempo de preparo</span>
-                  <p className='businessInfoPrice'>R$ 67,90</p>
-
-                  <div className='currentBusinessBtns'>
-                    <button>
-                      <AiOutlineMinus size={18}/>
-                    </button>
-                    <button>1</button>
-                    <button>
-                      <FiPlus size={18}/>
-                    </button>
-                  </div>
-                </div>
-
-              </div> */}
+          }) : <h2>Carregando...</h2>}
 
         </div>
       </div>  
@@ -135,4 +103,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default BusinessScreen

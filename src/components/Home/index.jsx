@@ -3,29 +3,16 @@
 import React, { useEffect } from 'react'
 import { FiChevronDown } from 'react-icons/fi'
 import { AiOutlineSearch } from 'react-icons/ai'
-/* import axios from 'axios' */
 import { Link } from 'react-router-dom'
 
 import Sidebar from '../Sidebar'
 
 import './home.scss'
-/* import { BusinessContext } from '../../context/BusinessContext' */
+
 import { getBusiness, getProducts } from '../../store/fetchActions'
 import { useDispatch, useSelector } from 'react-redux'
 
 const Home = () => {
-  /* const [business, setBusiness] = useState([]) */
-  /* const { setCurrentId } = useContext(BusinessContext) */
-
-  /* async function fetchBusiness(){
-    const { data } = await axios.get("https://api-test-carrinho.herokuapp.com/business")
-      
-      setBusiness(data.data)
-  }
-
-  useEffect(() => {
-    fetchBusiness()
-  }, []) */
   const business = useSelector(state => state.businesses)
   const dispatch = useDispatch()
 
@@ -33,8 +20,8 @@ const Home = () => {
     dispatch(getBusiness())
   }, [dispatch])
 
-  const fetchProduct = (id) => {
-    dispatch(getProducts(id))
+  const fetchProduct = (id, index) => {
+    dispatch(getProducts(id, index))
   }
 
 
@@ -60,11 +47,11 @@ const Home = () => {
                 <Link 
                 className='business' 
                 key={id}
-                onClick={() => fetchProduct(item._id)}
+                onClick={() => fetchProduct(item._id, item)}
                 to={`/${item._id}`}>
 
                   <div className='imageDiv'>
-                    <img src={item.assets.logo} alt=''/>
+                    <img src={item.assets.cover} alt=''/>
                   </div>
 
                   <div className='businessInfo'>
