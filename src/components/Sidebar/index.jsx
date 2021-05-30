@@ -1,10 +1,16 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { addItem } from '../../store/Cart'
 
 import './sidebar.scss'
 
 const Sidebar = ({addItemCart}) => {
 
+  const dispatch = useDispatch()
 
+  function addItemCart(item){
+    dispatch(addItem(item))
+  }
 
   return (
     <aside>
