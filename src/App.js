@@ -1,15 +1,19 @@
 import Nav from './components/Nav'
-import Home from './components/Home'
+import Routes from './routes'
+/* import BusinessProvider from './context/BusinessProvider' */
+import { Provider } from 'react-redux'
 
 import './global.scss';
+import store from './store';
 
 function App() {
   return (
-    <div className="App">
-      <Nav />
-      <Home/>
-      
-    </div>
+    <Provider store={store}>
+      <div className="App">
+          <Nav />
+          <Routes/>
+      </div>
+    </Provider>
   );
 }
 

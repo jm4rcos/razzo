@@ -1,12 +1,43 @@
-import React from 'react'
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react'
 import { FiChevronDown } from 'react-icons/fi'
 import { AiOutlineSearch } from 'react-icons/ai'
+/* import axios from 'axios' */
+import { Link } from 'react-router-dom'
 
 import Sidebar from '../Sidebar'
 
 import './home.scss'
+/* import { BusinessContext } from '../../context/BusinessContext' */
+import { getBusiness, getProducts } from '../../store/fetchActions'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Home = () => {
+  /* const [business, setBusiness] = useState([]) */
+  /* const { setCurrentId } = useContext(BusinessContext) */
+
+  /* async function fetchBusiness(){
+    const { data } = await axios.get("https://api-test-carrinho.herokuapp.com/business")
+      
+      setBusiness(data.data)
+  }
+
+  useEffect(() => {
+    fetchBusiness()
+  }, []) */
+  const business = useSelector(state => state.businesses)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getBusiness())
+  }, [dispatch])
+
+  const fetchProduct = (id) => {
+    dispatch(getProducts(id))
+  }
+
+
   return (
     <section>
       <ul>
@@ -23,41 +54,29 @@ const Home = () => {
           </div>
 
           <div className='businessList'>
-            <div className='business'>
-              <img src='/assets/bag.svg' alt=''/>
-              <div className='businessInfo'>
-                <p>RodaPizza</p>
-                <strong>Pizzarias</strong>
-                <span>Rua José Loureira da Silva, 1230</span>
-              </div>              
-            </div>
 
-            <div className='business'>
-              <img src='/assets/bag.svg' alt=''/>
-              <div className='businessInfo'>
-                <p>RodaPizza</p>
-                <strong>Pizzarias</strong>
-                <span>Rua José Loureira da Silva, 1230</span>
-              </div>              
-            </div>
+            {business[0] && business[0].map((item, id) => {
+              return (
+                <Link 
+                className='business' 
+                key={id}
+                onClick={() => fetchProduct(item._id)}
+                to={`/${item._id}`}>
 
-            <div className='business'>
-              <img src='/assets/bag.svg' alt=''/>
-              <div className='businessInfo'>
-                <p>RodaPizza</p>
-                <strong>Pizzarias</strong>
-                <span>Rua José Loureira da Silva, 1230</span>
-              </div>              
-            </div>
+                  <div className='imageDiv'>
+                    <img src={item.assets.logo} alt=''/>
+                  </div>
 
-            <div className='business'>
-              <img src='/assets/bag.svg' alt=''/>
-              <div className='businessInfo'>
-                <p>RodaPizza</p>
-                <strong>Pizzarias</strong>
-                <span>Rua José Loureira da Silva, 1230</span>
-              </div>              
-            </div>
+                  <div className='businessInfo'>
+                    <p>{item.name}</p>
+                    <strong>{item.phone}</strong>
+                    <span>{item.address.street_name}, {item.address.street_number} {item.address.city}</span>
+                  </div>
+
+                </Link>
+              )
+            })}
+
           </div>
         </div>  
         
