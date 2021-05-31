@@ -2,9 +2,16 @@
 import React from 'react'
 import { FiChevronDown } from 'react-icons/fi'
 
+import { addItem } from '../../store/Cart'
+import { useSelector } from 'react-redux'
+
 import './nav.scss'
 
 const Nav = () => {
+
+  const cartLength = useSelector(state => state.cart.length)
+  console.log(cartLength);
+
   return(
   <nav>
     <div>
@@ -15,7 +22,9 @@ const Nav = () => {
     <div className='user'>
       <div>
         <img src='/assets/bag.svg' alt="" className='bag'/>
+        {!cartLength <= 0 && (<span className='cartLength'>{cartLength}</span>)}
       </div>
+      
       
       <img src='/assets/user.png' alt=""/>
 

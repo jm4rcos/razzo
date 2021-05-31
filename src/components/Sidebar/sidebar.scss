@@ -1,5 +1,5 @@
 aside{
-  width: auto;
+  min-width: 300px;
   height: auto;
   
   .sidebarContainer{
@@ -10,12 +10,30 @@ aside{
     flex-direction: column;
     padding: 2.5rem 1rem;
     border-radius: 7px;
+    
 
   .sidebarProducts{
     display: flex;
     width: 100%;
     flex-direction: column;
-    margin-bottom: 30vh;
+    margin-bottom: 1rem;
+    height: 40vh;
+    overflow: auto;
+    
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    &::-webkit-scrollbar-track {
+      background: #b4d7ff; 
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #888; 
+    }
+
+    & + div{
+      top: 1rem;
+    }
 
     strong{
       color: var(--link);
@@ -26,53 +44,69 @@ aside{
       display: flex;
       width: 100%;
       align-items: center;
-      justify-content: center;
-      gap: 1rem;
+      justify-content: space-between;
+      margin-bottom: .5rem;
   
-      .productImg{
-        width: 50px;
-      }
-  
-      .type{
-        color: var(--preto);
-        font-size: 12px;
-      }
-  
-      .itemPrice{
-        color: var(--validar);
-        font-size: 12px;
-      }
-  
-      .info{
+      .leftInfo{
         display: flex;
-        flex-direction: column;
+        flex: 1;
+        align-items: center;
+        gap: .5rem;
 
-        .productName{
-          color: var(--campos);
-          font-size: 14px;
+        .productImg{
+          width: 50px;
+          border-radius: 7px;
+        }
+    
+        .type{
+          color: var(--preto);
+          font-size: 12px;
+        }
+    
+        .itemPrice{
+          color: var(--validar);
+          font-size: 12px;
+        }
+    
+        .info{
+          display: flex;
+          flex-direction: column;
+  
+          .productName{
+            color: var(--campos);
+            font-size: 14px;
+          }
         }
       }
   
-      .bagBtns{
+      .rightBtns{
         display: flex;
-        flex-direction: column;
-        width: 30px;
-        height: 100%;
-        background: var(--link);
-        display: flex;
+        width: 20%;
         align-items: center;
-        justify-content:center;
-        gap: 5px;
-        height: 100%;
-        padding: .2rem;
-        
-        button{
-          background: none;
-          color: #fff;
-          font-size: 14px;
-  
-          img{
-            width: 8px;
+        gap: .5rem;
+        margin-right: 10px;
+
+        .bagBtns{
+          display: flex;
+          flex-direction: column;
+          width: 30px;
+          height: 100%;
+          background: var(--link);
+          display: flex;
+          align-items: center;
+          justify-content:center;
+          gap: 5px;
+          height: 100%;
+          padding: .2rem;
+          
+          button{
+            background: none;
+            color: #fff;
+            font-size: 14px;
+    
+            img{
+              width: 8px;
+            }
           }
         }
       }

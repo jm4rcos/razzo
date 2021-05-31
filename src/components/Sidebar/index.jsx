@@ -1,45 +1,32 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { addItem } from '../../store/Cart'
+import { useDispatch, useSelector } from 'react-redux'
+import { removeItem } from '../../store/Cart'
+
+import ItemCart from '../../components/ItemCart'
 
 import './sidebar.scss'
 
-const Sidebar = ({addItemCart}) => {
+const Sidebar = () => {
+  const cartItem = useSelector(state => state.cart)
+
+  console.log('itens do carrinho', cartItem);
 
   const dispatch = useDispatch()
 
-  function addItemCart(item){
-    dispatch(addItem(item))
+  function removeItemCart(item){
+    dispatch(removeItem(item))
   }
 
   return (
     <aside>
-      <div className="sidebarContainer" addItemCart={addItemCart}>
+      <div className="sidebarContainer">
         <section className='sidebarProducts'>
-          <strong>Produto</strong>
-          <div className='bagItem'>
-          <img src="/assets/user.png" alt="" className='productImg'/>
-
-          <div className='info'>
-            <p className='productName'>Pizza picanha com cheddar</p>
-            <span className='type'>Pizzas</span>
-            <span className='itemPrice'>R$ 54,32</span>
-          </div>
-
-          <div className='bagBtns'>
-            <button>
-              <img src='/assets/minor.svg' alt="" />
-            </button>
-            <button>1</button>
-            <button>
-            <img src='/assets/plus.svg' alt="" />
-            </button>
-          </div>
-
-          <button>
-            <img src="/assets/trash.svg" alt="" style={{width:'15px'}}/>
-          </button>
-        </div>
+        <strong>Produtos</strong>
+          {cartItem && cartItem.map((item, index) => {
+            return (
+              <ItemCart item={item} key={index} removeItemCart={removeItemCart}/>
+            )
+          })}
       </section>
 
         <section className='allPrices'>

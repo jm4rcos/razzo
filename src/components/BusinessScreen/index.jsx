@@ -7,20 +7,24 @@ import { Link } from  'react-router-dom'
 
 import Sidebar from '../Sidebar'
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { addItem } from '../../store/Cart'
 
 import './business.scss'
 
 const BusinessScreen = ({ addItemCart }) => {
   const currentId = useSelector(state => state.currentId)
   const product = useSelector(state => state.products)
+
+  const dispatch = useDispatch()
   
   const currentProduct = product.length - 1
   const lastCurrentId = product.length - 1
 
   // eslint-disable-next-line no-redeclare
   function addItemCart(item){
-    console.log(item);
+    dispatch(addItem(item))
+    console.log('add', item);
   }
 
   return (
@@ -66,24 +70,24 @@ const BusinessScreen = ({ addItemCart }) => {
 
         <div className='businessListCurrent'>
 
-          {product[0] ? product[currentProduct].map(product => {
+          {product[0] ? product[currentProduct].map(item => {
             return (
-              <div className='business' key={product._id}>
+              <div className='business' key={item._id}>
                 <div className='imageDiv'>
-                  <img src={product.imgs[1].url} alt=''/>
+                  <img src={item.imgs[1].url} alt=''/>
                 </div>
 
                 <div className='businessInfo'>
-                  <p>{product.name}</p>
-                  <span>{product.description}</span>
+                  <p>{item.name}</p>
+                  <span>{item.description}</span>
                   <span>Tempo de preparo: 40min</span>
-                  <p className='businessInfoPrice'>R$: {product.pricing.toLocaleString()}</p>
+                  <p className='businessInfoPrice'>R$: {item.pricing.toLocaleString()}</p>
 
                   <div className='currentBusinessBtns'>
                     <button>
                       <AiOutlineMinus size={18}/>
                     </button>
-                    <button onClick={() => addItemCart(product)}>1</button>
+                    <button onClick={() => addItemCart(item)}>1</button>
                     <button>
                       <FiPlus size={18}/>
                     </button>
