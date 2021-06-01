@@ -7,8 +7,5 @@ export const removeItem = createAction('REMOVE_ITEM')
 
 export default createReducer(INITIAL_STATE, {
   [addItem.type]: (state, action) => [...state, action.payload],
-  [removeItem.type]: (state, action) => state.filter(item => item !== action.payload)
+  [removeItem.type]: (state, action) => state.filter(item => item._id !== action.payload._id)
 })
-
-/* state.filter(item => item !== action.payload) */
-
